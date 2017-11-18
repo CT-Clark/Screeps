@@ -2,8 +2,16 @@ var roleHarvester = require('role.harvester'); // Use roll for Harvester
 var roleUpgrader = require('role.upgrader');   // Use roll for Upgrader
 
 module.exports.loop = function () {
+    
+    // Cleans the memory of deceased creeps to prevent a stack overflow
+    for(var name in Memory.creeps) {
+        if(!Game.creeps[name]) {
+            delete Memory.creeps[name];
+            console.log('Clearing non-existing creep memory:', name);
+        }
+    }
 
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester'); // COunts the number of harvesters
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester'); // Counts the number of harvesters
     console.log('Harvesters: ' + harvesters.length); // Prints out the number of harvesters
     
     // Spawns a harvester if there are ever less than 2 of them
