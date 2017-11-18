@@ -1,0 +1,2 @@
+|| ----- BASIC COMMANDS ----- ||
+Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1' ); // Spawns a creep through the console
